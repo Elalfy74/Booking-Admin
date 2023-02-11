@@ -8,11 +8,12 @@ import {
   TextField,
   useRecordContext,
 } from "react-admin";
-import { CustomTitle } from "../components/CustomTitle";
+
+import { CustomImageField, CustomTitle } from "../components";
 
 export const CityTitle = () => {
   const record = useRecordContext();
-  return <CustomTitle title="City" value={record.name} />;
+  return <CustomTitle title="City" value={record?.name} />;
 };
 
 const CityList = () => (
@@ -21,8 +22,8 @@ const CityList = () => (
       <TextField source="id" />
       <TextField source="name" />
       <ReferenceField source="country" reference="countries" />
+      <CustomImageField source="photos[0]" label="Photo" />
       <BooleanField source="isFeatured" />
-      <ImageField source="photos[0]" label="photo" className="object" />
       <EditButton />
     </Datagrid>
   </List>

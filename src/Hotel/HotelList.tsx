@@ -1,14 +1,13 @@
 import {
   BooleanField,
   Datagrid,
-  EditButton,
-  ImageField,
   List,
   NumberField,
   ReferenceField,
   ShowButton,
   TextField,
 } from "react-admin";
+import { CustomImageField } from "../components";
 
 const HotelList = () => (
   <List>
@@ -18,11 +17,12 @@ const HotelList = () => (
 
       <NumberField source="cheapestPrice" />
 
-      <ReferenceField source="category" reference="hotel-categories" />
+      <TextField source="category" />
+
       <ReferenceField source="city" reference="cities" />
 
-      <ImageField source="photos[0]" label="photo" className="object" />
-      <NumberField source="noOfStars" label="stars" />
+      <CustomImageField source="photos[0]" label="Photo" />
+      <NumberField source="stars" label="stars" />
 
       <BooleanField source="isFeatured" />
       <ShowButton />

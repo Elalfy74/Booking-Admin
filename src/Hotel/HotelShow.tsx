@@ -17,21 +17,20 @@ const HotelShow = () => {
   return (
     <Show>
       <SimpleShowLayout>
-        <TextField source="name" />
-        <TextField source="desc" />
+        <TextField source="name" fullWidth />
+        <TextField source="desc" fullWidth />
+
+        <NumberField source="cheapestPrice" />
 
         <TextField source="address" />
         <NumberField source="distanceToDT" />
 
-        <ReferenceField source="category" reference="hotel-categories" />
+        <TextField source="category" />
         <ReferenceField source="city" reference="cities" />
 
         <ArrayField source="photos">
-          {/* <SingleFieldList> */}
           <TextField source="" />
-          {/* </SingleFieldList> */}
         </ArrayField>
-        <ImageField source="photos" />
       </SimpleShowLayout>
     </Show>
   );

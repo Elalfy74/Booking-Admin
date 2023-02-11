@@ -7,6 +7,7 @@ import {
   SimpleFormIterator,
   TextInput,
 } from "react-admin";
+import { ArrayInputImages } from "../components";
 import { CityTitle } from "./CityList";
 
 const CityEdit = () => (
@@ -15,11 +16,7 @@ const CityEdit = () => (
       <TextInput source="id" disabled />
       <TextInput source="name" />
       <ReferenceInput source="country" reference="countries" />
-      <ArrayInput source="photos">
-        <SimpleFormIterator fullWidth>
-          <TextInput source="" fullWidth />
-        </SimpleFormIterator>
-      </ArrayInput>
+      <ArrayInputImages />
       <BooleanInput source="isFeatured" />
     </SimpleForm>
   </Edit>

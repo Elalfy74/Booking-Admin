@@ -2,17 +2,16 @@ import {
   BooleanField,
   Datagrid,
   EditButton,
-  ImageField,
   List,
   TextField,
 } from "react-admin";
 
 import { useRecordContext } from "react-admin";
-import { CustomTitle } from "../components/CustomTitle";
+import { CustomImageField, CustomTitle } from "../components";
 
 export const CountryTitle = () => {
   const record = useRecordContext();
-  return <CustomTitle title="Country" value={record.name} />;
+  return <CustomTitle title="Country" value={record?.name} />;
 };
 
 const CountryList = () => (
@@ -20,7 +19,7 @@ const CountryList = () => (
     <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="name" />
-      <ImageField source="photo" className="object" />
+      <CustomImageField source="photo" />
       <BooleanField source="isFeatured" />
       <EditButton />
     </Datagrid>

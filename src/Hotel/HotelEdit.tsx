@@ -13,38 +13,47 @@ import {
 const HotelEdit = () => (
   <Edit>
     <SimpleForm>
-      <TextInput source="name" required />
-      <TextInput source="desc" required multiline rows={5} />
+      <TextInput source="name" required fullWidth />
+      <TextInput source="desc" required multiline rows={5} fullWidth />
 
-      <TextInput source="address" required />
-      <NumberInput source="distanceToDT" required min={1} />
+      <TextInput source="address" required fullWidth />
+      <NumberInput source="distanceToDTInKm" required min={1} />
 
-      <ReferenceInput source="category" reference="hotel-categories" required />
+      <TextInput source="category" required />
       <ReferenceInput source="city" reference="cities" required />
 
       <ArrayInput source="photos">
+        <SimpleFormIterator>
+          <TextInput source="" fullWidth />
+        </SimpleFormIterator>
+      </ArrayInput>
+
+      <ArrayInput source="features">
         <SimpleFormIterator>
           <TextInput source="" />
         </SimpleFormIterator>
       </ArrayInput>
 
-      <NumberInput source="noOfStars" required min={1} max={5} />
+      <NumberInput source="stars" required min={1} max={5} />
 
       <ArrayInput source="rooms">
-        <SimpleFormIterator inline>
+        <SimpleFormIterator>
           <TextInput source="title" required />
 
-          <NumberInput source="maxPeople" min={1} required />
-          <NumberInput source="beds" min={1} required />
+          <NumberInput source="maxPeople.adults" min={1} required />
+          <NumberInput source="maxPeople.children" min={1} required />
 
-          <TextInput source="desc" required />
+          <TextInput source="beds" required />
+
           <NumberInput source="currentPrice" min={1} required />
+        </SimpleFormIterator>
+      </ArrayInput>
 
-          <ArrayInput source="photos">
-            <SimpleFormIterator inline>
-              <TextInput source="" />
-            </SimpleFormIterator>
-          </ArrayInput>
+      <ArrayInput source="reviews">
+        <SimpleFormIterator>
+          <TextInput source="user" fullWidth />
+          <NumberInput source="rate" />
+          <TextInput source="body" fullWidth />
         </SimpleFormIterator>
       </ArrayInput>
 

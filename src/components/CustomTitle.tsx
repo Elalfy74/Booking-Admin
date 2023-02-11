@@ -1,6 +1,6 @@
 type CustomTitleProps = {
   title: string;
-  value: string;
+  value?: string;
 };
 
 export const CustomTitle = ({ title, value }: CustomTitleProps) => {

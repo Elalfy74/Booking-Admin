@@ -1,26 +1,16 @@
 import { Admin, Resource } from "react-admin";
 
 import simpleRestProvider from "./dataProvide";
+import { authProvider } from "./authProvider";
 
 import { CityCreate, CityEdit, CityList } from "./City";
 import { CountryList, CountryEdit, CountryCreate } from "./Country";
-import {
-  RoomCategoryList,
-  RoomCategoryEdit,
-  RoomCategoryCreate,
-} from "./RoomCategory";
-
-import {
-  HotelCategoryList,
-  HotelCategoryEdit,
-  HotelCategoryCreate,
-} from "./HotelCategory";
 
 import { HotelList, HotelEdit, HotelCreate, HotelShow } from "./Hotel";
-import { authProvider } from "./authProvider";
+
+import { RoomUnitEdit, RoomUnitCreate, RoomUnitList } from "./RoomUnit";
+
 import { CustomLayout } from "./components/CustomLayout";
-import RoomUnitCreate from "./RoomUnit/RoomUnitCreate";
-import RoomUnitList from "./RoomUnit/RoomUnitList";
 
 const dataProvider = simpleRestProvider(import.meta.env.VITE_BACKEND_URL);
 
@@ -46,22 +36,6 @@ const App = () => (
       recordRepresentation="name"
     />
 
-    {/* <Resource
-      name="room-categories"
-      list={RoomCategoryList}
-      edit={RoomCategoryEdit}
-      create={RoomCategoryCreate}
-      recordRepresentation="name"
-    /> */}
-
-    <Resource
-      name="hotel-categories"
-      list={HotelCategoryList}
-      edit={HotelCategoryEdit}
-      create={HotelCategoryCreate}
-      recordRepresentation="name"
-    />
-
     <Resource
       name="hotels"
       list={HotelList}
@@ -74,7 +48,7 @@ const App = () => (
     <Resource
       name="room-units"
       list={RoomUnitList}
-      // edit={HotelEdit}
+      edit={RoomUnitEdit}
       create={RoomUnitCreate}
     />
   </Admin>

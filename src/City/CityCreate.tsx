@@ -7,17 +7,14 @@ import {
   ArrayInput,
   SimpleFormIterator,
 } from "react-admin";
+import { ArrayInputImages } from "../components";
 
 const CityCreate = () => (
   <Create>
     <SimpleForm>
       <TextInput source="name" />
       <ReferenceInput source="country" reference="countries" />
-      <ArrayInput source="photos">
-        <SimpleFormIterator fullWidth>
-          <TextInput source="" fullWidth />
-        </SimpleFormIterator>
-      </ArrayInput>
+      <ArrayInputImages />
       <BooleanInput source="isFeatured" />
     </SimpleForm>
   </Create>

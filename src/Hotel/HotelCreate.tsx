@@ -20,11 +20,9 @@ const HotelCreate = () => {
         <TextInput source="address" required />
         <NumberInput source="distanceToDT" required min={1} />
 
-        <ReferenceInput source="category" reference="hotel-categories" required>
-          <AutocompleteInput optionText="name" />
-        </ReferenceInput>
+        <ReferenceInput source="category" reference="hotel-categories" />
 
-        <ReferenceInput source="city" reference="cities" required />
+        <ReferenceInput source="city" reference="cities" />
 
         <ArrayInput source="photos">
           <SimpleFormIterator>

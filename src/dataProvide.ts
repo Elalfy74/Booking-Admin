@@ -1,5 +1,12 @@
 import { DataProvider, fetchUtils } from "react-admin";
 import { stringify } from "query-string";
+import _ from "lodash";
+
+function returnChanges(object, base) {
+  return _.fromPairs(
+    _.differenceWith(_.toPairs(object), _.toPairs(base), _.isEqual)
+  );
+}
 
 export default (
   apiUrl: string,
@@ -121,7 +128,7 @@ export default (
 
     return httpClient(`${apiUrl}/${resource}/${params.id}`, {
       method: "PATCH",
-      body: JSON.stringify(params.data),
+      body: JSON.stringify(returnChanges(params.data, params.previousData)),
       credentials: "include",
     }).then(({ json }) => ({ data: { ...json, id: json._id } }));
   },

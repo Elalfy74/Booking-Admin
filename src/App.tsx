@@ -19,6 +19,7 @@ const App = () => (
     dataProvider={dataProvider}
     authProvider={authProvider}
     layout={CustomLayout}
+    requireAuth
   >
     <Resource
       name="countries"

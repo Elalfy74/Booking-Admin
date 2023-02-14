@@ -21,8 +21,8 @@ export default (
     const rangeEnd = page * perPage - 1;
 
     const query = {
-      sort: JSON.stringify([field, order]),
-      range: JSON.stringify([page, perPage]),
+      sort: [field, order.toLowerCase()],
+      range: [page, perPage],
       filter: JSON.stringify(params.filter),
     };
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
@@ -82,8 +82,8 @@ export default (
     const rangeEnd = page * perPage - 1;
 
     const query = {
-      sort: JSON.stringify([field, order]),
-      range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
+      sort: [field, order.toLowerCase()],
+      range: [page, perPage],
       filter: JSON.stringify({
         ...params.filter,
         [params.target]: params.id,
@@ -130,6 +130,9 @@ export default (
       method: "PATCH",
       body: JSON.stringify(returnChanges(params.data, params.previousData)),
       credentials: "include",
+      headers: new Headers({
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      }),
     }).then(({ json }) => ({ data: { ...json, id: json._id } }));
   },
 
@@ -140,6 +143,9 @@ export default (
         httpClient(`${apiUrl}/${resource}/${id}`, {
           method: "PUT",
           body: JSON.stringify(params.data),
+          headers: new Headers({
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          }),
         })
       )
     ).then((responses) => ({ data: responses.map(({ json }) => json.id) })),
@@ -149,6 +155,9 @@ export default (
       method: "POST",
       body: JSON.stringify(params.data),
       credentials: "include",
+      headers: new Headers({
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      }),
     }).then(({ json }) => ({ data: { ...params.data, id: json._id } })),
 
   delete: (resource, params) =>
@@ -156,6 +165,7 @@ export default (
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "text/plain",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       }),
       credentials: "include",
     }).then(({ json }) => ({ data: { ...json, id: json._id } })),
@@ -167,6 +177,7 @@ export default (
         httpClient(`${apiUrl}/${resource}/${id}`, {
           method: "DELETE",
           headers: new Headers({
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             "Content-Type": "text/plain",
           }),
           credentials: "include",
